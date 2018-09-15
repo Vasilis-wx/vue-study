@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../animate.css">
+</head>
+<style>
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active{
+        transition: opacity 3s;
+    }
+</style>
+<body>
+
+<div id="app">
+    <transition
+            type="transition"
+            :duration="{enter:5000,leave:3000}"
+            appear
+            enter-active-class="animated swing v-enter-active"
+            leave-active-class="animated shake v-leave-active"
+            appear-active-class="animated swing"
+    >
+        <h2 v-show="show">one </h2>
+    </transition>
+    <button @click="change">change</button>
+</div>
+
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: true,
+        },
+        methods: {
+            change: function () {
+                this.show = !this.show
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

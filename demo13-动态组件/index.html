@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <component v-bind:is="type"></component>
+    <button @click="change">change</button>
+</div>
+
+
+<script>
+
+    Vue.component('child-one', {
+        template: `<div v-once>child-one</div>`
+    });
+
+    Vue.component('child-two', {
+        template: `<div v-once>child-two</div>`
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            type: "child-one",
+        },
+        methods: {
+            change: function () {
+                this.type = this.type === "child-one" ? "child-two" : "child-one";
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

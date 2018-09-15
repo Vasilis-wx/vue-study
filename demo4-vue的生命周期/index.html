@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        /* 生命周期函数就是vue实例在某一个时间点会自动执行的函数 **/
+        var vm = new Vue({
+            el:"#app",
+            template: "<div>{{content}}</div>",
+            data:{
+              content : "hello world"
+            },
+            beforeCreate:function () {
+                console.info('beforeCreate')
+            },
+            created:function () {
+                console.info('created')
+            },
+            beforeMount: function () {
+                console.info(this.$el)
+                console.info('beforeMount')
+            },
+            mounted: function () {
+                console.info(this.$el)
+                console.info('mounted')
+            },
+            beforeDestroy: function () {
+                console.info('beforeDestroy')
+            },
+            destroyed: function () {
+                console.info('destroyed')
+            },
+            beforeUpdate: function () {
+                console.info('beforeUpdate')
+            },
+            updated: function () {
+                console.info('updated')
+            }
+        });
+
+
+    </script>
+</body>
+</html>

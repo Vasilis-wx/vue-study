@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style绑定</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div @click="clickDiv" :style="[styleObj,aa]">wang xin</div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            styleObj: {
+                color: "black"
+            },
+            aa: {
+                "font-size":'30px'
+            }
+        },
+        methods: {
+            clickDiv: function () {
+                this.styleObj.color = this.styleObj.color === "red" ? "black" : "red";
+            }
+        }
+    })
+</script>
+</body>
+</html>

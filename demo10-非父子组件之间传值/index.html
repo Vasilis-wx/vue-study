@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="">
+<head>
+    <meta charset="UTF-8">
+    <title>非父子组件间传值（Bus/总线/发布订阅模式/观察者模式）</title>
+    <!--<script src="../vue.js"></script>-->
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <child content="wang"></child>
+    <child content="xin"></child>
+</div>
+
+
+<script>
+
+    Vue.prototype.bus = new Vue();
+
+    Vue.component('child', {
+        props: {
+            content: String
+        },
+        data: function () {
+            return {
+                selfContent: this.content
+            }
+        },
+        template: '<div @click="handleClick">{{ selfContent }}</div>',
+        methods: {
+            handleClick: function () {
+                this.bus.$emit('change', this.selfContent);
+            }
+        },
+        mounted: function () {
+            var this_ = this;
+            this.bus.$on('change', function (msg) {
+                this_.selfContent = msg;
+            })
+        }
+    });
+
+    var app7 = new Vue({
+        el: '#app',
+        data: {
+            groceryList: [],
+            content: '西瓜'
+        },
+        methods: {
+            addItem: function () {
+                this.groceryList.push(this.content)
+            },
+            deleteItem: function (index) {
+                this.groceryList.splice(index, 1);
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

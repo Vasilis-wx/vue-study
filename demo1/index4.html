@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+    <div v-bind:id="dynamicId">33</div>
+    <p v-if="seen">现在你看到我了</p>
+    <a v-bind:href="url">gggggggggggggggggggggggggggg</a>
+    <a href="url">gggggggggggggggggggggggggggg</a>
+
+</div>
+
+<script>
+    var data = {
+        a: 1,
+        rawHtml : '<span style="color:red">hello world</span>',
+        dynamicId : '666',
+        seen : false,
+        url : "3333333333333333",
+        isButtonDisabled : false
+    }
+
+    var vm = new Vue({
+        el: '#example',
+        data: data
+    })
+
+    console.info(vm.$data === data) // => true
+    console.info(vm.$data) // => true
+    console.info(vm.$el === document.getElementById('example'))// => true
+
+
+    // $watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+        // 这个回调将在 `vm.a` 改变后调用
+       alert(newValue)
+    })
+
+    // vm.$data.a = 5;
+
+</script>
+</body>
+</html>

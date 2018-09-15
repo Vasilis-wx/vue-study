@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class绑定</title>
+    <script src="../vue.js"></script>
+</head>
+<style>
+    .myClass {
+        color: red;
+    }
+</style>
+<body>
+<div id="app">
+    <div @click="clickDiv" :class="myClass">wang xin</div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            myClass: ""
+        },
+        methods: {
+            clickDiv: function () {
+                this.myClass = this.myClass === "myClass" ? "" : "myClass";
+            }
+        }
+    })
+</script>
+</body>
+</html>

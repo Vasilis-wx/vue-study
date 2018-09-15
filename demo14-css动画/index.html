@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="">
+<head>
+    <meta charset="UTF-8">
+    <title>css过渡动画</title>
+    <script src="../vue.js"></script>
+</head>
+<style>
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active{
+        transition: opacity 3s;
+    }
+</style>
+<body>
+
+<div id="app">
+    <transition ><!--若没有写name，则默认为v-->
+        <h2 v-if="show">one </h2>
+    </transition>
+    <button @click="change">change</button>
+</div>
+
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: true,
+        },
+        methods: {
+            change: function () {
+                this.show = !this.show
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

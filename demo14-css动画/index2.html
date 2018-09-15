@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="">
+<head>
+    <meta charset="UTF-8">
+    <title>使用animte.css库</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../animate.css">
+</head>
+<style>
+
+    @keyframes bounce-in {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .v-enter-active{
+        transform-origin: left center;
+        animation: bounce-in 1s;
+    }
+    .v-leave-active{
+        transform-origin: left center;
+        animation: bounce-in 1s reverse;
+    }
+</style>
+<body>
+
+<div id="app">
+    <transition enter-active-class="animated swing"
+                leave-active-class="animated shake"><!--若没有写name，则默认为v-->
+        <h2 v-if="show">one </h2>
+    </transition>
+    <button @click="change">change</button>
+</div>
+
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: true,
+        },
+        methods: {
+            change: function () {
+                this.show = !this.show
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
